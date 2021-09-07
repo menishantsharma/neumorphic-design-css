@@ -1,7 +1,7 @@
 {
-  "name": "your_site_name",
+  "name": "neumorphic_design_css",
   "version": "1.0.0",
-  "description": "your_site_description",
+  "description": "This is neumorphic design made with pure css",
   "main": "index.js",
   "scripts": {
     "watch:sass": "node-sass main.scss style.css -w",
