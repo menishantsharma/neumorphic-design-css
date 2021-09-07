@@ -1,0 +1,576 @@
+:root {
+  --primary-light: #8abdff;
+  --primary: #6d5dfc;
+  --primary-dark: #5b0eeb;
+
+  --white: #ffffff;
+  --greyLight-1: #e4ebf5;
+  --greyLight-2: #c8d0e7;
+  --greyLight-3: #bec8e4;
+  --greyDark: #9baacf;
+}
+
+$shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2),
+  -0.2rem -0.2rem 0.5rem var(--white);
+$inner-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
+  inset -0.2rem -0.2rem 0.5rem var(--white);
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 1rem = 10px    100% = 16px
+  overflow-y: scroll;
+  background: var(--greyLight-1);
+
+  @media screen and (min-width: 900px) {
+    font-size: 75%;
+  }
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.4rem;
+  color: var(--primary);
+}
+
+input {
+}
+
+.container {
+  padding: 4rem 0;
+  width: 80rem;
+  background-color: var(--greyLight-1);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 3rem;
+  box-shadow: $shadow;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  justify-items: center;
+  align-items: center;
+  grid-row-gap: 2rem;
+
+  & > * {
+    border-radius: 9px;
+  }
+}
+
+// CLOCK
+
+.clock {
+  grid-column: 2 / 3;
+  grid-row: 1/ 3;
+  box-shadow: $shadow, $inner-shadow;
+  border-radius: 50%;
+  border: 3px solid var(--greyLight-1);
+  height: 12rem;
+  width: 12rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__center {
+    height: 5px;
+    width: 5px;
+    background-color: black;
+    border-radius: 50%;
+    position: relative;
+    display: block;
+  }
+
+  &__needle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%);
+    transform-origin: top;
+    display: block;
+    border-radius: 4px;
+
+    &--hour {
+      height: 3rem;
+      width: 6px;
+      transform: rotate(120deg);
+      background-color: var(--greyLight-2);
+    }
+
+    &--min {
+      height: 4.6rem;
+      width: 4px;
+      transform: rotate(220deg);
+      background-color: var(--greyDark);
+    }
+
+    &--sec {
+      height: 5rem;
+      width: 2px;
+      background-color: var(--primary);
+    }
+  }
+}
+
+.circle__inner {
+  height: 6rem;
+  box-shadow: $inner-shadow;
+  width: 6rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center__cover {
+  height: 10px;
+  width: 10px;
+  background-color: var(--primary);
+  position: absolute;
+  border-radius: 50%;
+}
+
+// TABS
+
+.tabs {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  box-shadow: $shadow;
+  justify-content: space-around;
+  width: 80%;
+  display: flex;
+  border-radius: 9px;
+  padding: 4px 2px;
+}
+
+.tab {
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: var(--greyLight-3);
+
+  &--active {
+    box-shadow: $inner-shadow;
+    color: var(--primary);
+  }
+}
+
+.search {
+  grid-row: 2 /3;
+  grid-column: 3 / 4;
+  width: 80%;
+  position: relative;
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    color: var(--greyDark);
+    font-size: 1.7rem;
+  }
+
+  &__input {
+    padding: 0 0 0 3.5rem;
+    box-shadow: $inner-shadow;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    height: 3.6rem;
+    width: 100%;
+    border-radius: inherit;
+    font-size: 1.4rem;
+    color: var(--greyDark);
+    font-family: "Poppins";
+
+    &::placeholder {
+      font-size: 1.4rem;
+      color: var(--greyLight-3);
+      font-family: "Poppins";
+    }
+
+    &:focus {
+      box-shadow: $shadow;
+    }
+  }
+}
+
+.message {
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+  width: 80%;
+
+  &__input {
+    padding: 0 0 0 1.3rem;
+    box-shadow: $inner-shadow;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    height: 3.6rem;
+    width: 100%;
+    border-radius: inherit;
+    font-size: 1.4rem;
+    color: var(--greyDark);
+    font-family: "Poppins";
+
+    &::placeholder {
+      font-size: 1.4rem;
+      color: var(--greyLight-3);
+      font-family: "Poppins";
+    }
+
+    &:focus {
+      box-shadow: $shadow;
+    }
+  }
+}
+
+// NAVIGATION
+
+.menu {
+  grid-column: 3 / 4;
+  grid-row: 4 / 5;
+  width: 80%;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+
+  &__item:link {
+    border-radius: 50%;
+    box-shadow: $shadow;
+    height: 4rem;
+    width: 4rem;
+    position: relative;
+
+    &:hover .nav__icon {
+      color: var(--primary);
+    }
+  }
+
+  &__item:active {
+    box-shadow: $inner-shadow;
+  }
+
+  &__icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--greyDark);
+    font-size: 1.8rem;
+    transition: all 0.2s;
+  }
+}
+
+// SLIDER
+
+.slider {
+  grid-column: 3 / 4;
+  grid-row: 5 / 6;
+  width: 80%;
+
+  &__input {
+    height: 10px;
+    width: 100%;
+    // box-shadow: $inner-shadow;
+
+    &::-webkit-slider-thumb {
+      width: 20px; /* Set a specific slider handle width */
+      height: 20px; /* Slider handle height */
+      border-radius: 50%;
+      background: white;
+      border: none;
+      outline: none;
+      cursor: pointer; /* Cursor on hover */
+    }
+
+    &::-moz-range-thumb {
+      width: 20px; /* Set a specific slider handle width */
+      height: 20px; /* Slider handle height */
+      border-radius: 50%;
+      background: white;
+      border: none;
+      outline: none;
+      cursor: pointer; /* Cursor on hover */
+    }
+  }
+}
+
+// CHECKBOXES
+
+.checkboxes {
+  grid-column: 1 / 2;
+  grid-row: 2/3;
+  display: flex;
+  width: 80%;
+  justify-content: space-around;
+}
+
+.checkbox {
+  border-radius: 4px;
+  box-shadow: $shadow;
+  height: 2.8rem;
+  width: 2.8rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__hidden {
+    display: none;
+  }
+
+  &__icon {
+    color: var(--greyLight-3);
+  }
+}
+
+#checkbox__hidden-1:checked + .checkbox-1 {
+  box-shadow: $inner-shadow;
+
+  .checkbox__icon {
+    color: var(--primary);
+  }
+}
+
+#checkbox__hidden-2:checked + .checkbox-2 {
+  box-shadow: $inner-shadow;
+
+  .checkbox__icon {
+    color: var(--primary);
+  }
+}
+
+// RADIO BUTTONS
+
+.radio {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+
+  input {
+    display: none;
+  }
+
+  label {
+    height: 3rem;
+    width: 3rem;
+    box-shadow: $shadow;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--greyDark);
+    cursor: pointer;
+  }
+}
+
+#radio-1:checked + label {
+  box-shadow: $inner-shadow;
+
+  i {
+    color: var(--primary);
+  }
+}
+
+#radio-2:checked + label {
+  box-shadow: $inner-shadow;
+
+  i {
+    color: var(--primary);
+  }
+}
+
+.btn__white {
+  grid-row: 5 / 6;
+  grid-column: 1 / 2;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+
+  button {
+    width: 80%;
+    outline: none;
+    background: transparent;
+    border: none;
+    color: var(--greyDark);
+    font-size: 1.6rem;
+    padding: 1rem 3rem;
+    border-radius: 1rem;
+    box-shadow: $shadow;
+    cursor: pointer;
+
+    &:active {
+      box-shadow: $inner-shadow;
+    }
+  }
+}
+
+.btn__blue {
+  grid-row: 4 / 5;
+  grid-column: 1 / 2;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+
+  button {
+    width: 80%;
+    box-shadow: inset 0.2rem 0.2rem 1rem var(--primary-light),
+      inset -0.2rem -0.2rem 1rem var(--primary-dark),
+      0.3rem 0.3rem 0.6rem var(--greyLight-2),
+      -0.2rem -0.2rem 0.5rem var(--white);
+    outline: none;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.6rem;
+    background: var(--primary);
+    padding: 1rem 3rem;
+    border-radius: 1rem;
+    // box-shadow: $inner-shadow;
+    cursor: pointer;
+
+    &:active {
+      box-shadow: inset 0.2rem 0.2rem 1rem var(--primary-dark),
+        inset -0.2rem -0.2rem 1rem var(--primary-light);
+    }
+  }
+}
+
+.chip {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: $shadow;
+  width: 80%;
+  padding: 1rem 0.5rem;
+
+  &__icon {
+  }
+  &__title {
+    font-size: 1rem;
+    color: var(--greyDark);
+  }
+  &__close {
+    i {
+      color: var(--greyLight-2);
+    }
+  }
+}
+
+.play {
+  grid-column: 2/3;
+  grid-row: 4 / 6;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__icon {
+    height: 7rem;
+    width: 7rem;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: $shadow;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      height: 2.4rem;
+      width: 0.6rem;
+      background-color: var(--primary);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 2.6rem;
+      border-radius: 2px;
+    }
+
+    &::after {
+      content: "";
+      height: 2.4rem;
+      width: 0.6rem;
+      background-color: var(--primary);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 2.6rem;
+      border-radius: 2px;
+    }
+  }
+}
+
+// SWITCH
+
+.switch {
+  height: 100%;
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+
+  input {
+    display: none;
+  }
+  label {
+    height: 2.8rem;
+    width: 5.4rem;
+    border-radius: 2rem;
+    box-shadow: $shadow;
+    display: flex;
+    align-items: center;
+    padding: 0.4rem;
+    cursor: pointer;
+
+    transition: all 0.4s;
+  }
+
+  div {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    background-color: var(--greyDark);
+
+    transition: all 0.4s;
+  }
+}
+
+#checkbox-1:checked + label {
+  background-image: linear-gradient(
+    to right bottom,
+    var(--primary-light),
+    var(--primary-dark)
+  );
+
+  div {
+    background-color: #fff;
+    transform: translateX(2.6rem);
+  }
+}
+
+#checkbox-2:checked + label {
+  background-image: linear-gradient(
+    to right bottom,
+    var(--primary-light),
+    var(--primary-dark)
+  );
+
+  div {
+    background-color: #fff;
+    transform: translateX(2.6rem);
+  }
+}
